@@ -1,4 +1,11 @@
-var vm = new Vue({
+import Vue from 'vue'
+import AppComponent from './components/app-component'
+import siteTitle from './components/siteTitle'
+
+export default new Vue({
   el: '#app',
-  data: { message: 'Hello Vue.js!' }
+  components: {
+    'app-component': AppComponent,
+    'site-title': siteTitle
+  }
 })
