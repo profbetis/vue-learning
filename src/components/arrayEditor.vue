@@ -22,33 +22,67 @@ export default Vue.extend({
         <td class="array-editor-index">#</td>
         <td class="array-editor-value">Value</td>
         <td class="array-editor-redo">↻</td>
+        <td class="array-editor-redo">&nbsp;</td>
       </tr>
     </thead>
 
     <tbody>
       <tr v-for="value in dataSet" track-by="$index">
+
         <td class="array-editor-delete"
+            v-if=($index<dataSet.length)
             v-on:click="removeElement($index)">×</td>
+
+            <td class="array-editor-delete"
+                style="pointer-events: none;"
+                v-else>&nbsp;</td>
+
         <td class="array-editor-index">{{$index}}</td>
+
         <td class="array-editor-value">{{value}}</td>
-        <td class="array-editor-add"
+
+        <td class="array-editor-move move-up"
             v-on:click="moveElement($index, $index - 1)"
-            v-if=$index>^</td>
+            v-if=($index)>↑</td>
+
+            <td class="array-editor-move"
+                style="pointer-events: none;"
+                v-else>&nbsp;</td>
+
+        <td class="array-editor-move"
+            v-on:click="moveElement($index, $index + 1)"
+            v-if=($index<dataSet.length-1)>↓</td>
+            <td class="array-editor-move"
+                style="pointer-events: none;"
+                v-else>&nbsp;</td>
+
       </tr>
+
       <tr>
-        <td class="array-editor-delete">&nbsp;</td>
+        <td class="array-editor-delete" style="pointer-events: none;">&nbsp;</td>
         <td class="array-editor-index">&nbsp;</td>
-        <td class="array-editor-value">
-          <input type="text" v-model="newEntry" placeholder="new">
+        <td class="array-editor-value new-entry">
+          <input type="text"
+                 v-model="newEntry"
+                 onkeypress=submitOnEnter(event, dataSet.length, this)
+                 placeholder="New Entry">
         </td>
-        <td class="array-editor-add"
+        <td class="array-editor-move"
             v-show=newEntry
             v-on:click="insertElement(dataSet.length, newEntry)">+</td>
+
+            <td class="array-editor-move"
+                style="pointer-events: none;"
+                v-else>&nbsp;</td>
+        <td class="array-editor-move"
+            style="pointer-events: none;"
+            v-else>&nbsp;</td>
       </tr>
     </tbody>
 
     <tfoot>
       <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -72,17 +106,27 @@ export default Vue.extend({
       this.newEntry = ''
     },
     moveElement: function (id, newId) {
-      this.dataSet = [
-        ...this.dataSet.slice(0, id),
-        this.dataSet[newId],
-        ...this.dataSet.slice(id + 1)
-      ]
+      var elem = this.dataSet[id]
+      this.dataSet.splice(id, 1)
+      this.dataSet.splice(newId, 0, elem)
+    },
+    submitOnEnter: function (e, index, text) {
+      // if (e.keyCode === 13) {
+      if (true) {
+        document.window.alert(5)
+        // this.insertElement(index, text)
+      }
     }
   }
 })
 </script>
 
 <style>
+
+.array-editor-meta{
+    width: 23em;
+}
+
 .info{
     float: right;
     text-align: right;
@@ -97,20 +141,20 @@ export default Vue.extend({
 }
 
 .array-editor-delete{ color: #a06060; }
-.array-editor-add{ color: #60a060; }
+.array-editor-move{ color: #60a060; }
 .array-editor-index{ color: #606060; }
 
 .array-editor-delete,
-.array-editor-add{
+.array-editor-move{
     opacity: 0.5;
     cursor: default;
 }
 .array-editor-delete:hover,
-.array-editor-add:hover{
+.array-editor-move:hover{
     opacity: 1;
 }
 .array-editor-delete:active,
-.array-editor-add:active{
+.array-editor-move:active{
     background-color: rgba(255,255,255,0.2);
 }
 .array-editor-delete:last-of-type:hover{
@@ -139,9 +183,41 @@ table tr{
 table td{
     padding: 0.125em 1em;
 }
-table tbody td:hover{ background-color: rgba(255,255,255,0.03); }
+table tbody td:hover{ background-color: rgba(0,0,0,0.1); }
+
+table .new-entry{
+    background-color: rgba(0,0,0,0.15);
+}
+table .new-entry:hover{
+    background-color: rgba(255,255,255,0.1);
+    outline: 1px solid #686058;
+}
 
 /*********************/
 /* TABLES END
+/*********************/
+
+
+
+/*********************/
+/* INPUT START
+/*********************/
+table input{
+    background-color: transparent;
+    border: none;
+    color: #d0d0d0;
+    width: auto;
+    font-size: 14px;
+    font-family: monospace;
+}
+table input:focus{outline: none;}
+input::-webkit-input-placeholder,
+input:-moz-input-placeholder,
+input::-moz-input-placeholder,
+input:-ms-input-placeholder{
+    color: #f06060;
+}
+/*********************/
+/* INPUT START
 /*********************/
 </style>
