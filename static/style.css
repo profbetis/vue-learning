@@ -1,39 +1,91 @@
 #app{
-    padding: 1em;
 }
 
 html{
     font-family: 'Open Sans', sans-serif;
-    background-color: #283038;
-    padding: 0.5em;
+    background-color: #384048;
+    padding: 1em;
 }
 body{
     color: #aaa;
+    padding: 0em;
+    margin: 0em;
 }
-h1{
+h1, h2{
     font-weight: 100;
+    margin: 0 0 0.5em 0;
 }
+h2{
+    font-size: 1.4em;
+}
+p{
+    margin: 0em;
+}
+div.outline{ background-color: rgba(0,0,0,0.1); }
+
 .outline{
-    outline: 1px dotted #585048;
+    outline: 1px dotted #686058;
     outline-offset: -1px;
+    padding: 1em 1em;
+    margin: 1em 0;
 }
-.outline:hover{ outline-color: #686058; }
+.outline:first-of-type { margin-top: 0; }
+.outline:last-of-type { margin-bottom: 0; }
+.outline:hover{ outline-color: #787068; }
 
 #site-title{
-    width: 100%;
-    height: 4em;
+    width: auto;
     text-align: center;
     font-weight: 100;
-    margin-bottom: 1em;
 }
 
 #site-mainTitle{
     font-size: 1.7em;
     font-weight: 100;
     color: #c0c0c0;
-    padding-top: 0.1em;
+    margin: 0em;
 }
 #site-subTitle{
     font-size: 0.7em;
     color: #808080;
+    margin: 0em;
 }
+
+
+
+/*********************/
+/* VISUALIZATIONS START
+/*********************/
+div.point{
+    background-color: #787068;
+    text-align: center;
+}
+/*********************/
+/* VISUALIZATIONS END
+/*********************/
+
+
+
+/*********************/
+/* TABLES START
+/*********************/
+table{
+    font-size: 12px;
+    font-family: monospace;
+}
+table thead tr,
+table tfoot tr{
+    font-weight: 600;
+    background-color: rgba(0,0,0,0.3);
+}
+table tr{
+    margin: 0.5em;
+    padding: 0.5em;
+    background-color: rgba(0,0,0,0.2);
+}
+table td{
+    padding: 0.25em 1em;
+}
+/*********************/
+/* TABLES END
+/*********************/

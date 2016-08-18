@@ -1,6 +1,5 @@
 <template>
   <h1>{{text}}</h1>
-  <dataTable></dataTable>
 </template>
 
 <script>

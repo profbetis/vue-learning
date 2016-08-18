@@ -19,10 +19,20 @@
         </div>-->
 
         <div id="data-visualizations" class="outline">
-            <num-visualizerA></num-visualizerA>
-            <num-visualizerB></num-visualizerB>
-            <text-visualizerA></text-visualizerA>
-            <text-visualizerB></text-visualizerB>
+            <num-visualizer-a class="outline"
+                :data-set="atom.numbers">
+            </num-visualizer-a>
+            <num-visualizer-a class="outline"
+                :data-set="atom.moreNumbers">
+            </num-visualizer-a>
+            <num-visualizer-b class="outline"
+                :data-set="atom.numbers">
+            </num-visualizer-b>
+            <num-visualizer-b class="outline"
+                :data-set="atom.moreNumbers">
+            </num-visualizer-b>
+            <!--<text-visualizerA></text-visualizerA>
+            <text-visualizerB></text-visualizerB>-->
         </div>
     </div>
     <!-- built files will be auto injected -->

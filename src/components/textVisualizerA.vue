@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <td>Index</td>
-      <td>Data</td>
+      <td>Number</td>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +16,20 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
+export default Vue.component('text-visualizerA', {
+  template: '<div class="outline">Text Visualizer A</div>',
+  props: {
+    dataPoints: Array
+  },
+  data: function () {
+    // var dataPoints = []
+  }
+})
+</script>
+
+<!--<script>
 export default {
   data () {
     return {
@@ -23,4 +37,4 @@ export default {
     }
   }
 }
-</script>
+</script>-->
