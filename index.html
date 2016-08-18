@@ -19,18 +19,24 @@
         </div>-->
 
         <div id="data-visualizations" class="outline">
-            <num-visualizer-a class="outline"
+            <array-editor class="outline"
+                data-name="Numbers Set A"
+                :data-set="atom.numbers"
+                :edit-mode="true"
+                :show-index="true">
+            </array-editor>
+            <array-editor class="outline"
+                data-name="Numbers Set B"
+                :data-set="atom.moreNumbers"
+                :edit-mode="true"
+                :show-index="true">
+            </array-editor>
+            <num-visualizer class="outline"
                 :data-set="atom.numbers">
-            </num-visualizer-a>
-            <num-visualizer-a class="outline"
+            </num-visualizer>
+            <num-visualizer class="outline"
                 :data-set="atom.moreNumbers">
-            </num-visualizer-a>
-            <num-visualizer-b class="outline"
-                :data-set="atom.numbers">
-            </num-visualizer-b>
-            <num-visualizer-b class="outline"
-                :data-set="atom.moreNumbers">
-            </num-visualizer-b>
+            </num-visualizer>
             <!--<text-visualizerA></text-visualizerA>
             <text-visualizerB></text-visualizerB>-->
         </div>

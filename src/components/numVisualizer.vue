@@ -8,15 +8,15 @@ export default Vue.extend({
     <div>
       <table class="graph">
         <thead>
-          <tr> <td v-for="value in dataSet">{{$index}}</td></tr>
+          <tr> <td v-for="value in dataSet" track-by="$index">{{$index}}</td></tr>
         </thead>
         <tr>
-          <td v-for="value in dataSet">
+          <td v-for="value in dataSet" track-by="$index">
             <div class="point" style="width:{{value}}px; height:{{value}}px;">
             </div>
           </td>
         </tr>
-        <tfoot><tr><td v-for="value in dataSet"></tr></tfoot>
+        <tfoot><tr><td v-for="value in dataSet" track-by="$index"></tr></tfoot>
       </table>
     </div>
   </div>`

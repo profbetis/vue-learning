@@ -1,8 +1,8 @@
 import Vue from 'vue'
 // import numberInput from './components/numberInput'
 // import textInput from './components/textInput'
-import numVisualizerA from './components/numVisualizerA'
-import numVisualizerB from './components/numVisualizerB'
+import arrayEditor from './components/arrayEditor'
+import numVisualizer from './components/numVisualizer'
 // import textVisualizerA from './components/textVisualizerA'
 // import textVisualizerB from './components/textVisualizerB'
 
@@ -19,8 +19,8 @@ export default new Vue({
   components: {
     // 'number-input': numberInput,
     // 'text-input': textInput,
-    'num-visualizer-a': numVisualizerA,
-    'num-visualizer-b': numVisualizerB
+    'array-editor': arrayEditor,
+    'num-visualizer': numVisualizer
     // 'text-visualizer-a': textVisualizerA
     // 'text-visualizer-b': textVisualizerB
   },
