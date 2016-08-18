@@ -9,7 +9,7 @@ import Vue from 'vue'
 export default Vue.extend({
   props: ['dataName', 'dataSet', 'show-index'],
   template: `
-  <div class="array-editor-meta">
+  <div class="array-editor-meta component-meta">
     <div class="info">{{dataName}}<br>
     {{dataSet.length}} elements</div>
 
@@ -64,7 +64,7 @@ export default Vue.extend({
         <td class="array-editor-value new-entry">
           <input type="text"
                  v-model="newEntry"
-                 onkeypress=submitOnEnter(event, dataSet.length, this)
+                 @keydown.enter="submitOnEnter()"
                  placeholder="New Entry">
         </td>
         <td class="array-editor-move"
@@ -91,8 +91,10 @@ export default Vue.extend({
     </tfoot>
   </table>
   </div>`,
-  data: {
-    newEntry: ''
+  data: () => {
+    return {
+      newEntry: ''
+    }
   },
   methods: {
     // removeElement: function (id) {
@@ -110,11 +112,9 @@ export default Vue.extend({
       this.dataSet.splice(id, 1)
       this.dataSet.splice(newId, 0, elem)
     },
-    submitOnEnter: function (e, index, text) {
-      // if (e.keyCode === 13) {
-      if (true) {
-        document.window.alert(5)
-        // this.insertElement(index, text)
+    submitOnEnter: function () {
+      if (this.newEntry.length > 0) {
+        this.insertElement(this.dataSet.length, this.newEntry)
       }
     }
   }
@@ -124,7 +124,6 @@ export default Vue.extend({
 <style>
 
 .array-editor-meta{
-    width: 23em;
 }
 
 .info{
