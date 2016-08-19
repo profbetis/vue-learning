@@ -97,9 +97,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    // removeElement: function (id) {
-    //   return [...this.dataSet.slice(0, id), ...this.dataSet.slice(id + 1)]
-    // },
     removeElement: function (id) {
       this.dataSet.splice(id, 1)
     },
