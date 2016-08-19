@@ -7,95 +7,16 @@
 <script>
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['dataName', 'dataSet', 'show-index'],
-  template: `
-  <div class="array-editor-meta component-meta">
-    <div class="info">{{dataName}}<br>
-    {{dataSet.length}} elements</div>
+  props: ['dataName', 'dataSet', 'showIndex'],
 
-    <h2>Array Editor</h2>
+  template: '#array-editor-template',
 
-  <table class="array-editor-body">
-    <thead>
-      <tr>
-        <td class="array-editor-undo">↺</td>
-        <td class="array-editor-index">#</td>
-        <td class="array-editor-value">Value</td>
-        <td class="array-editor-redo">↻</td>
-        <td class="array-editor-redo">&nbsp;</td>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr v-for="value in dataSet" track-by="$index">
-
-        <td class="array-editor-delete"
-            v-if=($index<dataSet.length)
-            v-on:click="removeElement($index)">×</td>
-
-            <td class="array-editor-delete"
-                style="pointer-events: none;"
-                v-else>&nbsp;</td>
-
-        <td class="array-editor-index">{{$index}}</td>
-
-        <td class="array-editor-value">{{value}}</td>
-
-        <td class="array-editor-move move-up"
-            v-on:click="moveElement($index, $index - 1)"
-            v-if=($index)>↑</td>
-
-            <td class="array-editor-move"
-                style="pointer-events: none;"
-                v-else>&nbsp;</td>
-
-        <td class="array-editor-move"
-            v-on:click="moveElement($index, $index + 1)"
-            v-if=($index<dataSet.length-1)>↓</td>
-            <td class="array-editor-move"
-                style="pointer-events: none;"
-                v-else>&nbsp;</td>
-
-      </tr>
-
-      <tr>
-        <td class="array-editor-delete" style="pointer-events: none;">&nbsp;</td>
-        <td class="array-editor-index">&nbsp;</td>
-        <td class="array-editor-value new-entry">
-          <input type="text"
-                 v-model="newEntry"
-                 @keydown.enter="submitOnEnter()"
-                 placeholder="New Entry">
-        </td>
-        <td class="array-editor-move"
-            v-show=newEntry
-            v-on:click="insertElement(dataSet.length, newEntry)">+</td>
-
-            <td class="array-editor-move"
-                style="pointer-events: none;"
-                v-else>&nbsp;</td>
-        <td class="array-editor-move"
-            style="pointer-events: none;"
-            v-else>&nbsp;</td>
-      </tr>
-    </tbody>
-
-    <tfoot>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tfoot>
-  </table>
-  </div>`,
   data: () => {
     return {
       newEntry: ''
     }
   },
+
   methods: {
     removeElement: function (id) {
       this.dataSet.splice(id, 1)
@@ -118,22 +39,110 @@ export default Vue.extend({
 })
 </script>
 
+<template id="array-editor-template">
+  <div class="array-editor component-meta">
+
+    <h2>Array Editor</h2>
+
+    <table class="array-editor-body">
+      <thead>
+        <tr>
+          <td class="array-editor-undo">↺</td>
+          <td class="array-editor-index">#</td>
+          <td class="array-editor-value">Value</td>
+          <td class="array-editor-redo">↻</td>
+          <td class="array-editor-redo">&nbsp;</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="value in dataSet" track-by="$index">
+
+          <td class="array-editor-delete"
+            v-if=($index<dataSet.length)
+            v-on:click="removeElement($index)">×</td>
+
+            <td class="array-editor-delete"
+              style="pointer-events: none;"
+              v-else>&nbsp;</td>
+
+          <td class="array-editor-index">{{$index}}</td>
+
+          <td class="array-editor-value">{{value}}</td>
+
+          <td class="array-editor-move move-up"
+            v-on:click="moveElement($index, $index - 1)"
+            v-if=($index)>↑</td>
+
+            <td class="array-editor-blank"
+              v-else>&nbsp;</td>
+
+          <td class="array-editor-move move-down"
+            v-on:click="moveElement($index, $index + 1)"
+            v-if=($index<dataSet.length-1)>↓</td>
+            <td class="array-editor-blank"
+              v-else>&nbsp;</td>
+
+        </tr>
+
+        <tr>
+          <td class="array-editor-delete" style="pointer-events: none;">&nbsp;</td>
+          <td class="array-editor-blank">&nbsp;</td>
+          <td class="array-editor-value new-entry">
+            <input type="text"
+              v-model="newEntry"
+              @keydown.enter="submitOnEnter()"
+              placeholder="New Entry">
+          </td>
+          <td class="array-editor-move"
+            v-show=newEntry
+            v-on:click="insertElement(dataSet.length, newEntry)">+</td>
+            <td v-else class="array-editor-blank">&nbsp;</td>
+
+          <td class="array-editor-blank">&nbsp;</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="info">
+      <b>{{dataName}}</b> // {{dataSet.length}} elements
+    </div>
+
+  </div>
+
+</template>
+
 <style>
 
-.array-editor-meta{
+.array-editor{
 }
 
-.info{
-    float: right;
-    text-align: right;
+.array-editor .info{
+    float: left;
+    text-align: left;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
     line-height: 1.1em;
     font-size: 0.8em;
     color: #707070;
+    border-top: 1px solid #485058;
+    width: 100%;
 }
 
 .array-editor-undo,
 .array-editor-redo{
     color: #4080a0;
+    cursor: no-drop;
 }
 
 .array-editor-delete{ color: #a06060; }
@@ -141,20 +150,28 @@ export default Vue.extend({
 .array-editor-index{ color: #606060; }
 
 .array-editor-delete,
-.array-editor-move{
+.array-editor-move,
+.array-editor-blank{
     opacity: 0.5;
     cursor: default;
 }
+
+.array-editor-delete,
+.array-editor-move.move-up,
+.array-editor-move.move-down,
+.array-editor-value .new-entry{
+  cursor: pointer;
+}
+
+.array-editor-blank{ pointer-events: none; }
 .array-editor-delete:hover,
 .array-editor-move:hover{
     opacity: 1;
 }
 .array-editor-delete:active,
 .array-editor-move:active{
-    background-color: rgba(255,255,255,0.2);
-}
-.array-editor-delete:last-of-type:hover{
-    opacity: 0.5;
+  background-color: rgba(255,255,255,0.15);
+  outline: 1px solid;
 }
 
 /*********************/
