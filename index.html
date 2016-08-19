@@ -14,25 +14,38 @@
     </div>
     <div id="app">
         <div id="data-visualizations" class="outline">
+
             <h1>Data Visualizations</h1>
+
             <array-editor class="outline"
                 data-name="Numbers Set A"
                 :data-set="atom.numbers"
                 :edit-mode="true"
                 :show-index="true">
             </array-editor>
+
+            <graph-component class="outline"
+                data-name="Numbers Set A"
+                :data-set="atom.numbers"
+                canvas-id="000"
+                :animated-graph="true">
+            </graph-component>
+
             <array-editor class="outline"
                 data-name="Numbers Set B"
                 :data-set="atom.moreNumbers"
                 :edit-mode="true"
                 :show-index="true">
             </array-editor>
+
             <num-visualizer class="outline"
                 :data-set="atom.numbers">
             </num-visualizer>
+
             <num-visualizer class="outline"
                 :data-set="atom.moreNumbers">
             </num-visualizer>
+
             <!--<text-visualizerA></text-visualizerA>
             <text-visualizerB></text-visualizerB>-->
         </div>

@@ -1,8 +1,8 @@
 import Vue from 'vue'
-// import numberInput from './components/numberInput'
-// import textInput from './components/textInput'
+import graphComponent from './components/graphComponent'
 import arrayEditor from './components/arrayEditor'
 import numVisualizer from './components/numVisualizer'
+// import textInput from './components/textInput'
 // import textVisualizerA from './components/textVisualizerA'
 // import textVisualizerB from './components/textVisualizerB'
 
@@ -17,10 +17,10 @@ export default new Vue({
   el: '#app',
 
   components: {
-    // 'number-input': numberInput,
-    // 'text-input': textInput,
+    'graph-component': graphComponent,
     'array-editor': arrayEditor,
     'num-visualizer': numVisualizer
+    // 'text-input': textInput,
     // 'text-visualizer-a': textVisualizerA
     // 'text-visualizer-b': textVisualizerB
   },
