@@ -15,6 +15,9 @@ module.exports = {
 
   // add your custom rules here
   'rules': {
+    // unused vars
+    'no-unused-vars': ['warn', {'args': 'all'}],
+    // 4-space indents
     'indent': [1, 2],
     // allow paren-less arrow functions
     'arrow-parens': 0,
