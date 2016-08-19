@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import graphComponent from './components/graphComponentNew'
+import graphComponent from './components/graphComponent'
 import arrayEditor from './components/arrayEditor'
 // import textInput from './components/textInput'
 // import textVisualizerA from './components/textVisualizerA'
