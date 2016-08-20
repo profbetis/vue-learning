@@ -7,7 +7,7 @@
 <script>
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['dataName', 'dataSet', 'showIndex'],
+  props: ['dataName', 'dataSet', 'editMode', 'showIndex'],
 
   template: '#array-editor-template',
 
@@ -17,19 +17,37 @@ export default Vue.extend({
     }
   },
 
+  ready: function () {
+    this.passInfoToGirdle({
+      compName: 'Array Editor',
+      compInfo: [
+        ['dataSet', this.dataName, this.dataSet.length + ' elements'],
+        ['showIndex', this.showIndex],
+        ['editMode', this.editMode]
+      ]
+    })
+  },
+
   methods: {
+    passInfoToGirdle: function (information) {
+      this.$dispatch('give-component-info', information)
+    },
+
     removeElement: function (id) {
       this.dataSet.splice(id, 1)
     },
+
     insertElement: function (id, value) {
       this.dataSet.splice(id, 0, value)
       this.newEntry = ''
     },
+
     moveElement: function (id, newId) {
       var elem = this.dataSet[id]
       this.dataSet.splice(id, 1)
       this.dataSet.splice(newId, 0, elem)
     },
+
     submitOnEnter: function () {
       if (this.newEntry.length > 0) {
         this.insertElement(this.dataSet.length, this.newEntry)
@@ -41,8 +59,6 @@ export default Vue.extend({
 
 <template id="array-editor-template">
   <div class="array-editor component-meta">
-
-    <h2>Array Editor</h2>
 
     <table class="array-editor-body">
       <thead>
@@ -114,9 +130,7 @@ export default Vue.extend({
       </tfoot>
     </table>
 
-    <div class="info">
-      <b>{{dataName}}</b> // {{dataSet.length}} elements
-    </div>
+
 
   </div>
 
@@ -178,32 +192,33 @@ export default Vue.extend({
 /* TABLES START
 /*********************/
 table{
-    font-size: 14px;
-    font-family: monospace;
+  margin-top: 0.5em;
+  font-size: 14px;
+  font-family: monospace;
 }
 table thead td,
 table tfoot td{
-    font-weight: 600;
-    background-color: rgba(0,0,0,0.4);
-    transition: all 0.1s ease-out;
+  font-weight: 600;
+  background-color: rgba(0,0,0,0.4);
+  transition: all 0.1s ease-out;
 }
 table tbody td{
-    background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.3);
 }
 table tr{
-    margin: 0.5em;
+  margin: 0.5em;
 }
 table td{
-    padding: 0.125em 1em;
+  padding: 0.125em 1em;
 }
 table tbody td:hover{ background-color: rgba(0,0,0,0.1); }
 
 table .new-entry{
-    background-color: rgba(0,0,0,0.15);
+  background-color: rgba(0,0,0,0.15);
 }
 table .new-entry:hover{
-    background-color: rgba(255,255,255,0.1);
-    outline: 1px solid #686058;
+  background-color: rgba(255,255,255,0.1);
+  outline: 1px solid #686058;
 }
 
 /*********************/
@@ -216,19 +231,19 @@ table .new-entry:hover{
 /* INPUT START
 /*********************/
 table input{
-    background-color: transparent;
-    border: none;
-    color: #d0d0d0;
-    width: auto;
-    font-size: 14px;
-    font-family: monospace;
+  background-color: transparent;
+  border: none;
+  color: #d0d0d0;
+  width: auto;
+  font-size: 14px;
+  font-family: monospace;
 }
 table input:focus{outline: none;}
 input::-webkit-input-placeholder,
 input:-moz-input-placeholder,
 input::-moz-input-placeholder,
 input:-ms-input-placeholder{
-    color: #f06060;
+  color: #f06060;
 }
 /*********************/
 /* INPUT START

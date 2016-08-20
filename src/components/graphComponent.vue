@@ -31,10 +31,23 @@ var comp = Vue.extend({
   template: '#graph-component-template',
 
   ready: function () {
+    this.passInfoToGirdle({
+      compName: 'Graph Component',
+      compInfo: [
+        ['canvasId', '#' + this.canvasId],
+        ['dataSet', this.dataName, this.dataSet.length + ' elements'],
+        ['canvasSize', this.canvasW + 'x' + this.canvasH],
+        ['animated', this.animated]
+      ]
+    })
     this.initCanvas()
   },
 
   methods: {
+    passInfoToGirdle: function (information) {
+      this.$dispatch('give-component-info', information)
+    },
+
     initCanvas: function () {
       let canvasEl = document.getElementById('canvas-graph-' + this.canvasId)
       this.ctx = canvasEl.getContext('2d')
@@ -84,10 +97,7 @@ export default comp
 
 <!-- COMPONENT TEMPLATE -->
 <template id="graph-component-template">
-
   <div class="graph-component component-meta">
-
-    <h2 class="component-title">Graph Component</h2>
 
     <canvas
       id="canvas-graph-{{canvasId}}"
@@ -96,15 +106,7 @@ export default comp
       vue-on:ready="initCanvas()">
     </canvas>
 
-    <br>
-
-    <div class="info">
-      <b>Canvas ID</b> // #{{canvasId}}<br>
-      <b>{{dataName}}</b> // {{dataSet.length}} elements
-    </div>
-
   </div>
-
 </template>
 
 
@@ -113,19 +115,20 @@ export default comp
 .graph-component{
 }
 .graph-component .info{
-    float: left;
-    text-align: left;
-    margin-top: 0.5em;
-    padding-top: 0.5em;
-    line-height: 1.1em;
-    font-size: 0.8em;
-    color: #707070;
-    border-top: 1px solid #485058;
-    width: 100%;
+  float: left;
+  text-align: left;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+  line-height: 1.1em;
+  font-size: 0.8em;
+  color: #707070;
+  border-top: 1px solid #485058;
+  width: 100%;
 }
 .graph-component canvas{
-    background-color: rgba(0,0,0,0.2);
-    outline: 1px dotted #686058;
-    outline-offset: -1px;
+  background-color: rgba(0,0,0,0.2);
+  outline: 1px dotted #686058;
+  outline-offset: -1px;
+  margin-top: 1em;
 }
 </style>

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import componentGirdle from './components/componentGirdle'
 import graphComponent from './components/graphComponent'
 import arrayEditor from './components/arrayEditor'
 // import textInput from './components/textInput'
@@ -16,11 +17,11 @@ export default new Vue({
   el: '#app',
 
   components: {
+    'component-girdle': componentGirdle,
     'graph-component': graphComponent,
     'array-editor': arrayEditor
     // 'text-input': textInput,
     // 'text-visualizer-a': textVisualizerA
-    // 'text-visualizer-b': textVisualizerB
   },
 
   data: {
