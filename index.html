@@ -8,58 +8,22 @@
   </head>
 
   <body>
+
     <div id="site-title" class="outline">
       <div id="site-mainTitle">Vue Sandbox</div>
       <div id="site-subTitle">Planted by Kevin Weber</div>
     </div>
-    <div id="app">
-      <div id="data-visualizations" class="outline">
 
-        <h1>Data Visualizations</h1>
-
-        <component-girdle
-          :init-show-controls="true"
-          :init-show-name="true"
-          :init-show-info="true">
-
-          <graph-component
-            data-name="Numbers Set A"
-            :data-set="atom.numbers"
-            canvas-id="000"
-            :animated="true">
-          </graph-component>
-        </component-girdle>
-
-        <component-girdle
-          :init-show-controls="true"
-          :init-show-name="false"
-          :init-show-info="true">
-
-          <array-editor
-            data-name="Numbers Set A"
-            :data-set="atom.numbers"
-            :edit-mode="true"
-            :show-index="true">
-          </array-editor>
-        </component-girdle>
-
-        <component-girdle
-          :init-show-controls="false"
-          :init-show-name="false"
-          :init-show-info="false">
-
-          <array-editor
-            data-name="Numbers Set B"
-            :data-set="atom.moreNumbers"
-            :edit-mode="true"
-            :show-index="true">
-          </array-editor>
-        </component-girdle>
-
-        <!--<text-visualizerA></text-visualizerA>
-        <text-visualizerB></text-visualizerB>-->
-      </div>
+    <div id="app" class="outline">
+      <dashboard></dashboard>
     </div>
+
+    <!-- Footer -->
+    <div id='footer' style="text-align: center; margin-top: 1em;">
+    © SynapseGarden
+    </div>
+    <!---->
+
     <!-- built files will be auto injected -->
   </body>
 

@@ -13,6 +13,7 @@ const TAU = 2 * Math.PI
 // COMPONENT TEMPLATE
 var comp = Vue.extend({
   props: {
+    compId: String,
     dataName: String,
     dataSet: Array,
     canvasId: String,
@@ -114,21 +115,10 @@ export default comp
 <style>
 .graph-component{
 }
-.graph-component .info{
-  float: left;
-  text-align: left;
-  margin-top: 0.5em;
-  padding-top: 0.5em;
-  line-height: 1.1em;
-  font-size: 0.8em;
-  color: #707070;
-  border-top: 1px solid #485058;
-  width: 100%;
-}
 .graph-component canvas{
   background-color: rgba(0,0,0,0.2);
   outline: 1px dotted #686058;
   outline-offset: -1px;
-  margin-top: 1em;
+  margin-bottom: -5px;
 }
 </style>

@@ -9,16 +9,13 @@ import Vue from 'vue'
 // COMPONENT TEMPLATE
 var comp = Vue.extend({
   props: {
-    initShowControls: Boolean,
-    initShowInfo: Boolean,
-    initShowName: Boolean
+    compId: String
   },
 
   data: function () {
     return {
-      showControls: this.initShowControls,
-      showInfo: this.initShowInfo,
-      showName: this.initShowName,
+      showInfo: true,
+      showName: true,
       minimized: false,
       compName: 'Component Name',
       compInfo: [
@@ -41,6 +38,10 @@ var comp = Vue.extend({
 
     toggleName: function () {
       this.showName = !this.showName
+    },
+
+    deleteComp: function () {
+      this.$dispatch()
     }
   },
 
@@ -61,7 +62,7 @@ export default comp
 
   <div class="component-girdle component-meta outline">
 
-    <div class="girdle-controls" v-if="showControls">
+    <div class="girdle-controls">
       <div class="girdle-toggle-name"
         v-on:click="toggleName()">
         <span>T</span>
@@ -112,8 +113,8 @@ export default comp
 
 .girdle-controls{
   position: absolute;
-  right: 0.5em;
-  top: 0.5em;
+  right: 0.5rem;
+  top: 0.25rem;
 
   text-align: justify;
   -ms-text-justify: distribute-all-lines;
@@ -126,12 +127,10 @@ export default comp
   line-height: 1em;
   text-align: center;
   display: inline-block;
-  *display: inline;
-  zoom: 1;
   outline: 1px solid #485058;
   background: rgba(255,255,255,0.05);
   cursor: pointer;
-  margin-left: 0.125em;
+  margin-left: 0.25rem;
 }
 .girdle-controls>div:hover{
   outline-color: #686058;
@@ -170,12 +169,9 @@ export default comp
   font-size: 1rem;
   line-height: 1rem;
   vertical-align: middle;
-  min-height: 1rem;
 
-  margin-top: -0.5rem;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.25em;
+  margin-bottom: 0.5rem;
 
   border-bottom: 1px solid #485058;
 }
@@ -186,11 +182,8 @@ export default comp
   line-height: 1.1em;
 
   text-align: left;
-  padding-top: 0.25em;
+  padding-top: 0.25rem;
   margin-top: 0.5rem;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-  margin-bottom: -0.5rem;
 }
 
 </style>
