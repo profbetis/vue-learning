@@ -2,9 +2,9 @@ import Vue from 'vue'
 import componentGirdle from './components/componentGirdle'
 import graphComponent from './components/graphComponent'
 import arrayEditor from './components/arrayEditor'
+import backendTest from './components/backendTest'
 // import textInput from './components/textInput'
 // import textVisualizerA from './components/textVisualizerA'
-// import textVisualizerB from './components/textVisualizerB'
 
 var atom = {
   numbers: [1, 2, 4, 8, 16, 32],
@@ -19,7 +19,8 @@ export default new Vue({
   components: {
     'component-girdle': componentGirdle,
     'graph-component': graphComponent,
-    'array-editor': arrayEditor
+    'array-editor': arrayEditor,
+    'backend-test': backendTest
     // 'text-input': textInput,
     // 'text-visualizer-a': textVisualizerA
   },

@@ -12,9 +12,26 @@
       <div id="site-mainTitle">Vue Sandbox</div>
       <div id="site-subTitle">Planted by Kevin Weber</div>
     </div>
-    <div id="app">
-      <div id="data-visualizations" class="outline">
 
+    <!-- Main App -->
+    <div id="app">
+
+      <div id="backend-tests" class="outline">
+        <h1>Backend Tests</h1>
+
+        <component-girdle
+          :init-show-controls="true"
+          :init-show-name="true"
+          :init-show-info="true">
+
+          <backend-test
+            :port-number="8080">
+          </backend-test>
+        </component-girdle>
+
+      </div>
+
+      <div id="data-visualizations" class="outline">
         <h1>Data Visualizations</h1>
 
         <component-girdle
@@ -60,6 +77,14 @@
         <text-visualizerB></text-visualizerB>-->
       </div>
     </div>
+    <!---->
+
+    <!-- Footer -->
+    <div id='footer' style="text-align: center; margin-top: 1em;">
+        © SynapseGarden
+    </div>
+    <!---->
+
     <!-- built files will be auto injected -->
   </body>
 
