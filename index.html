@@ -14,13 +14,52 @@
       <div id="site-subTitle">Planted by Kevin Weber</div>
     </div>
 
+    <!-- Main App -->
+    <div id="app">
+
+      <div id="backend-tests" class="outline">
+        <h1>Backend Tests</h1>
+
+        <component-girdle
+          :init-show-controls="true"
+          :init-show-name="true"
+          :init-show-info="true">
+
+          <backend-test
+            :port-number="8080">
+          </backend-test>
+        </component-girdle>
+
+      </div>
+
+      <div id="data-visualizations" class="outline">
+        <h1>Data Visualizations</h1>
+
+        <component-girdle
+          :init-show-controls="true"
+          :init-show-name="true"
+          :init-show-info="true">
+
+          <graph-component
+            data-name="Numbers Set A"
+            :data-set="atom.numbers"
+            canvas-id="000"
+            :animated="true">
+          </graph-component>
+        </component-girdle>
+
+        <component-girdle
+          :init-show-controls="true"
+          :init-show-name="false"
+          :init-show-info="true">
+
     <div id="app" class="outline">
       <dashboard :data-sources="user.dataSets"></dashboard>
     </div>
 
     <!-- Footer -->
     <div id='footer' style="text-align: center; margin-top: 1em;">
-    © SynapseGarden
+        © SynapseGarden
     </div>
     <!---->
 
