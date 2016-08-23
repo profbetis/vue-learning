@@ -9,7 +9,7 @@ import Vue from 'vue'
 // COMPONENT TEMPLATE
 var comp = Vue.extend({
   props: {
-    compId: String
+    compId: Number
   },
 
   data: function () {
@@ -40,8 +40,8 @@ var comp = Vue.extend({
       this.showName = !this.showName
     },
 
-    deleteComp: function () {
-      this.$dispatch()
+    kermitSuicide: function () {
+      this.$dispatch('please-kill-me', this.compId)
     }
   },
 
@@ -75,8 +75,13 @@ export default comp
 
       <div class="girdle-minimize"
         v-on:click="toggleMinimize()">
-        <span v-if="minimized">+</span>
+        <span v-show="minimized">+</span>
         <span v-else>-</span>
+      </div>
+
+      <div class="girdle-delete"
+        v-on:click="kermitSuicide()">
+        <span>×</span>
       </div>
     </div>
 
@@ -154,9 +159,9 @@ export default comp
 }
 
 .comp-minimize-transition{
-  transition: all 0.2s ease;
-  max-height: 20em;
-  max-width: 50em;
+  transition: all 0.3s ease;
+  max-height: 60em;
+  max-width: 60em;
   overflow: hidden;
 }
 .comp-minimize-enter,
