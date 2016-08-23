@@ -56,8 +56,16 @@ export default Vue.extend({
       this.nextId++
     },
 
-    'delete-component': function (compId) {
-      console.log('Request to delete component #' + compId)
+    'please-kill-me': function (compIdToDelete) {
+      console.log('Request to delete component #' + compIdToDelete)
+
+      let newCompList = this.componentList
+      this.componentList.forEach(function (element, index) {
+        if (element.compId === compIdToDelete) {
+          newCompList.splice(index, 1)
+        }
+      })
+      this.componentList = newCompList
     }
   }
 })
@@ -68,7 +76,7 @@ export default Vue.extend({
     <h1>Dashboard</h1>
 
     <div v-for="comp in componentList">
-      <component-girdle v-if="comp.type==='Array Editor'">
+      <component-girdle v-if="comp.type==='Array Editor'" :comp-id="comp.compId">
         <array-editor
           :comp-name="comp.name"
           :data-name="comp.sourceName"
@@ -79,7 +87,7 @@ export default Vue.extend({
         </array-editor>
       </component-girdle>
 
-      <component-girdle v-if="comp.type==='Graph Component'">
+      <component-girdle v-if="comp.type==='Graph Component'" :comp-id="comp.compId">
         <graph-component
           :comp-name="comp.name"
           :data-name="comp.sourceName"
