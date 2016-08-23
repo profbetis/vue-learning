@@ -2,11 +2,10 @@
 
 <script>
 import Vue from 'vue'
-import $ from 'jquery'
 
 export default Vue.extend({
   props: {
-    dataSources: Array
+    sourceList: Array
   },
 
   template: '#comp-spawner-template',
@@ -30,16 +29,6 @@ export default Vue.extend({
   },
 
   computed: {
-    dataSourceOptions: function () {
-      let sources = []
-      this.dataSources.forEach(function (element, index) {
-        sources.push({
-          text: element.name, value: index
-        })
-      })
-      return sources
-    },
-
     validForm: function () {
       let valid = true
       if (!this.compName) valid = false
@@ -48,43 +37,24 @@ export default Vue.extend({
       // if (this.arrayEditorProps && this.graphComponentProps) valid = false
 
       return valid
+    },
+
+    compProps: function () {
+      let relevantProps = {}
+      if (this.compType === 'Array Editor') relevantProps = this.arrayEditorProps
+      if (this.compType === 'Graph Component') relevantProps = this.graphComponentProps
+      return relevantProps
     }
   },
 
   methods: {
     createComponent: function () {
-      var newGirdle = $('<component-girdle></component-girdle>')
-      var newComp
-
-      if (this.compType === 'Array Editor') {
-        newComp = document.createElement('array-editor')
-        newComp.setAttribute('data-name', this.arrayEditorProps.dataName)
-        newComp.setAttribute(':data-set', this.arrayEditorProps.dataSet)
-        newComp.setAttribute(':edit-mode', this.arrayEditorProps.editMode)
-        newComp.setAttribute(':show-index', this.arrayEditorProps.showIndex)
-        newComp.appendTo(newGirdle)
-
-        // $('<array-editor></array-editor>', {
-        //   'data-name': this.compName,
-        //   'data-set': this.dataSources[this.sourceIndex].data,
-        //   'edit-mode': this.arrayEditorProps.editMode,
-        //   'show-index': this.arrayEditorProps.showIndex
-        // }).appendTo(newGirdle)
-
-        console.log('Array Editor added!')
-      }
-
-      if (this.compType === 'Graph Component') {
-        // newComp = document.createElement('array-editor')
-        // newComp.setAttribute('data-name', this.graphComponentProps.dataName)
-        // newComp.setAttribute('data-set', this.graphComponentProps.dataSet)
-        // newComp.setAttribute('canvas-id', this.graphComponentProps.canvasId)
-        // newComp.setAttribute('animated', this.graphComponentProps.animated)
-        // newComp.setAttribute('dimensions', this.graphComponentProps.dimensions)
-        console.log('Graph Component added!')
-      }
-
-      $('#dashboard-comp-spawner').before(newGirdle)
+      this.$dispatch('add-component',
+        this.compType,
+        this.compName,
+        this.sourceIndex,
+        this.compProps
+      )
 
       // this.showForm = false
       // this.clearForm()
@@ -104,7 +74,6 @@ export default Vue.extend({
         showIndex: true
       }
       this.graphComponentProps = {
-        canvasId: '000',
         animated: true,
         dimensions: [128, 128]
       }
@@ -129,10 +98,10 @@ export default Vue.extend({
       <fieldset div v-if="compType">
         <div>
           Data source: <select v-model="sourceIndex">
-          <option v-for="source in dataSourceOptions" v-bind:value="source.value">{{source.text}}</option>
+          <option v-for="source in sourceList" v-bind:value="source.index">{{source.name}}</option>
           </select>
           <span v-if="sourceIndex>=0">
-            {{dataSources[sourceIndex].data.length}} {{dataSources[sourceIndex].type}}
+            {{sourceList[sourceIndex].count}} {{sourceList[sourceIndex].type}}
           </span>
         </div>
 
@@ -143,8 +112,8 @@ export default Vue.extend({
 
         <div v-if="compType==='Graph Component'">
           <input type="checkbox" v-model="graphComponentProps.animated">Animated
-          <input type="number" name="dimenionX" min="32" max="512" v-model="graphComponentProps.dimensions[0]">
-          <input type="number" name="dimenionY" min="32" max="512" v-model="graphComponentProps.dimensions[1]">Canvas Dimensions
+          <input type="number" name="dimensionX" min="32" max="512" v-model="graphComponentProps.dimensions[0]">
+          <input type="number" name="dimensionY" min="32" max="512" v-model="graphComponentProps.dimensions[1]">Canvas Dimensions
         </div>
 
       </fieldset>

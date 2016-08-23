@@ -1,10 +1,6 @@
 import Vue from 'vue'
 
 import dashboard from './components/dashboard'
-import componentGirdle from './components/componentGirdle'
-import compSpawner from './components/compSpawner'
-import graphComponent from './components/graphComponent'
-import arrayEditor from './components/arrayEditor'
 // import textInput from './components/textInput'
 // import textVisualizerA from './components/textVisualizerA'
 
@@ -12,11 +8,7 @@ export default new Vue({
   el: '#app',
 
   components: {
-    'dashboard': dashboard,
-    'component-girdle': componentGirdle,
-    'comp-spawner': compSpawner,
-    'graph-component': graphComponent,
-    'array-editor': arrayEditor
+    'dashboard': dashboard
     // 'text-input': textInput,
     // 'text-visualizer-a': textVisualizerA
   },
@@ -64,13 +56,13 @@ export default new Vue({
           data: [
             'HelloVue', 'Kevin', 'Bodie', 'Lem E. Skrumpit'
           ]
-        },
-        {
-          name: 'Projects',
-          id: '003',
-          type: 'reference',
-          path: 'user/projects'
         }
+        // {
+        //   name: 'Projects',
+        //   id: '003',
+        //   type: 'reference',
+        //   path: 'user/projects'
+        // }
       ]
     },
     dashboard: [],

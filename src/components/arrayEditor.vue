@@ -7,7 +7,14 @@
 <script>
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['dataName', 'dataSet', 'editMode', 'showIndex'],
+  props: {
+    compId: Number,
+    compName: String,
+    dataName: String,
+    dataSet: Array,
+    editMode: Boolean,
+    showIndex: Boolean
+  },
 
   template: '#array-editor-template',
 
@@ -19,7 +26,7 @@ export default Vue.extend({
 
   ready: function () {
     this.passInfoToGirdle({
-      compName: 'Array Editor',
+      compName: this.compName + ' (Array Editor)',
       compInfo: [
         ['dataSet', this.dataName, this.dataSet.length + ' elements'],
         ['showIndex', this.showIndex],

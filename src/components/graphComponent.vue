@@ -13,34 +13,38 @@ const TAU = 2 * Math.PI
 // COMPONENT TEMPLATE
 var comp = Vue.extend({
   props: {
-    compId: String,
+    compId: Number,
+    compName: String,
     dataName: String,
     dataSet: Array,
-    canvasId: String,
-    animated: Boolean
+    animated: Boolean,
+    canvasW: Number,
+    canvasH: Number
   },
 
   data: function () {
     return {
-      canvasW: 256,
-      canvasH: 256,
       time: 0,
-      ctx: null
+      ctx: null,
+      ready: false
     }
   },
 
   template: '#graph-component-template',
 
-  ready: function () {
+  compiled: function () {
     this.passInfoToGirdle({
       compName: 'Graph Component',
       compInfo: [
-        ['canvasId', '#' + this.canvasId],
+        ['canvasId', '#' + this.compId],
         ['dataSet', this.dataName, this.dataSet.length + ' elements'],
-        ['canvasSize', this.canvasW + 'x' + this.canvasH],
+        ['canvasSize', this.canvasW + ' × ' + this.canvasH],
         ['animated', this.animated]
       ]
     })
+  },
+
+  ready: function () {
     this.initCanvas()
   },
 
@@ -50,7 +54,7 @@ var comp = Vue.extend({
     },
 
     initCanvas: function () {
-      let canvasEl = document.getElementById('canvas-graph-' + this.canvasId)
+      let canvasEl = document.getElementById('canvas-graph-' + this.compId)
       this.ctx = canvasEl.getContext('2d')
       this.animated ? this.startLoop() : this.drawTick()
     },
@@ -101,10 +105,9 @@ export default comp
   <div class="graph-component component-meta">
 
     <canvas
-      id="canvas-graph-{{canvasId}}"
+      id="canvas-graph-{{compId}}"
       width='{{canvasW}}'
-      height='{{canvasH}}'
-      vue-on:ready="initCanvas()">
+      height='{{canvasH}}'>
     </canvas>
 
   </div>
