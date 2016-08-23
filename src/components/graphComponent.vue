@@ -34,7 +34,7 @@ var comp = Vue.extend({
 
   compiled: function () {
     this.passInfoToGirdle({
-      compName: 'Graph Component',
+      compName: this.compName + ' (Array Editor)',
       compInfo: [
         ['canvasId', '#' + this.compId],
         ['dataSet', this.dataName, this.dataSet.length + ' elements'],
