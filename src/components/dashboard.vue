@@ -93,8 +93,8 @@ export default Vue.extend({
           :data-name="comp.sourceName"
           :data-set="dataSources[comp.source].data"
           :animated="comp.compProps.animated"
-          :canvas-w="comp.compProps.dimensions[0]"
-          :canvas-h="comp.compProps.dimensions[1]"
+          :canvas-w="+comp.compProps.dimensionW"
+          :canvas-h="+comp.compProps.dimensionH"
           :comp-id="comp.compId">
         </graphComponent>
       </component-girdle>

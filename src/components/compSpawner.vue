@@ -23,7 +23,8 @@ export default Vue.extend({
       graphComponentProps: {
         canvasId: '000',
         animated: true,
-        dimensions: [128, 128]
+        dimensionW: 256,
+        dimensionH: 256
       }
     }
   },
@@ -56,8 +57,8 @@ export default Vue.extend({
         this.compProps
       )
 
-      // this.showForm = false
-      // this.clearForm()
+      this.showForm = false
+      this.clearForm()
     },
 
     cancelCreation: function () {
@@ -75,7 +76,8 @@ export default Vue.extend({
       }
       this.graphComponentProps = {
         animated: true,
-        dimensions: [128, 128]
+        dimensionW: 256,
+        dimensionH: 256
       }
     }
   }
@@ -112,8 +114,8 @@ export default Vue.extend({
 
         <div v-if="compType==='Graph Component'">
           <input type="checkbox" v-model="graphComponentProps.animated">Animated
-          <input type="number" name="dimensionX" min="32" max="512" v-model="graphComponentProps.dimensions[0]">
-          <input type="number" name="dimensionY" min="32" max="512" v-model="graphComponentProps.dimensions[1]">Canvas Dimensions
+          <input type="number" name="dimensionW" min="32" max="512" v-model="graphComponentProps.dimensionW">
+          <input type="number" name="dimensionH" min="32" max="512" v-model="graphComponentProps.dimensionH">Canvas Dimensions
         </div>
 
       </fieldset>
