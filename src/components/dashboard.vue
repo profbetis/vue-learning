@@ -3,6 +3,7 @@
 <script>
 import Vue from 'vue'
 import compSpawner from './compSpawner'
+import streamComponent from './streamComponent'
 import componentGirdle from './componentGirdle'
 import graphComponent from './graphComponent'
 import arrayEditor from './arrayEditor'
@@ -17,6 +18,7 @@ export default Vue.extend({
   components: {
     'comp-spawner': compSpawner,
     'component-girdle': componentGirdle,
+    'stream-component': streamComponent,
     'graph-component': graphComponent,
     'array-editor': arrayEditor
   },
@@ -96,7 +98,15 @@ export default Vue.extend({
           :canvas-w="+comp.compProps.dimensionW"
           :canvas-h="+comp.compProps.dimensionH"
           :comp-id="comp.compId">
-        </graphComponent>
+        </graph-component>
+      </component-girdle>
+
+      <component-girdle v-if="comp.type==='Stream Component'" :comp-id="comp.compId">
+        <stream-component
+          :comp-name="comp.name"
+          :stream-name="comp.sourceName"
+          :stream-Data="dataSources[comp.source].data"
+        </stream-component>
       </component-girdle>
     </div>
 

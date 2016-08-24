@@ -21,10 +21,12 @@ export default Vue.extend({
         showIndex: true
       },
       graphComponentProps: {
-        canvasId: '000',
         animated: true,
         dimensionW: 256,
         dimensionH: 256
+      },
+      streamComponentProps: {
+        messageHistory: 10
       }
     }
   },
@@ -35,7 +37,6 @@ export default Vue.extend({
       if (!this.compName) valid = false
       if (!this.compType) valid = false
       if (this.sourceIndex < 0) valid = false
-      // if (this.arrayEditorProps && this.graphComponentProps) valid = false
 
       return valid
     },
@@ -44,6 +45,7 @@ export default Vue.extend({
       let relevantProps = {}
       if (this.compType === 'Array Editor') relevantProps = this.arrayEditorProps
       if (this.compType === 'Graph Component') relevantProps = this.graphComponentProps
+      if (this.compType === 'Stream Component') relevantProps = this.streamComponentProps
       return relevantProps
     }
   },
@@ -79,6 +81,9 @@ export default Vue.extend({
         dimensionW: 256,
         dimensionH: 256
       }
+      this.streamComponentProps = {
+        messageHistory: 10
+      }
     }
   }
 })
@@ -92,6 +97,7 @@ export default Vue.extend({
       <select v-model="compType">
         <option>Array Editor</option>
         <option>Graph Component</option>
+        <option>Stream Component</option>
       </select>
       called
       <input type='text' name='name' placeholder="Component Name" v-model="compName"></input>
@@ -116,6 +122,10 @@ export default Vue.extend({
           <input type="checkbox" v-model="graphComponentProps.animated">Animated
           <input type="number" name="dimensionW" min="32" max="512" v-model="graphComponentProps.dimensionW">
           <input type="number" name="dimensionH" min="32" max="512" v-model="graphComponentProps.dimensionH">Canvas Dimensions
+        </div>
+
+        <div v-if="compType==='Stream Component'">
+          <input type="number" name="messageHistory" min="1" max="128" v-model="streamComponentProps.messageHistory">Message History
         </div>
 
       </fieldset>

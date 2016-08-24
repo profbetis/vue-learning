@@ -1,16 +1,12 @@
 import Vue from 'vue'
 
 import dashboard from './components/dashboard'
-// import textInput from './components/textInput'
-// import textVisualizerA from './components/textVisualizerA'
 
 export default new Vue({
   el: '#app',
 
   components: {
     'dashboard': dashboard
-    // 'text-input': textInput,
-    // 'text-visualizer-a': textVisualizerA
   },
 
   data: {
@@ -34,8 +30,14 @@ export default new Vue({
       ],
       dataSets: [
         {
-          name: 'Powers of 2',
+          name: 'Null Set',
           id: '000',
+          type: 'null',
+          data: []
+        },
+        {
+          name: 'Powers of 2',
+          id: '001',
           type: 'numbers',
           data: [
             1, 2, 4, 8, 16, 32
@@ -43,7 +45,7 @@ export default new Vue({
         },
         {
           name: 'Primes',
-          id: '001',
+          id: '002',
           type: 'numbers',
           data: [
             2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71
@@ -51,18 +53,69 @@ export default new Vue({
         },
         {
           name: 'Associates',
-          id: '002',
+          id: '003',
           type: 'strings',
           data: [
             'HelloVue', 'Kevin', 'Bodie', 'Lem E. Skrumpit'
           ]
-        }
+        },
         // {
         //   name: 'Projects',
-        //   id: '003',
+        //   id: '004',
         //   type: 'reference',
         //   path: 'user/projects'
         // }
+        {
+          name: 'SG Ideation Stream',
+          id: '005',
+          type: 'messages',
+          data: [
+            {
+              user: 'Kevin Weber',
+              text: 'Sup skrumple butt'
+            },
+            {
+              user: 'Kevin Weber',
+              text: 'How was work today?'
+            },
+            {
+              user: 'Bodie Solomon',
+              text: 'Pretty grumpin\' grood lol'
+            },
+            {
+              user: 'Bodie Solomon',
+              text: 'Train ride home was boring af though -_-'
+            },
+            {
+              user: 'Kevin Weber',
+              text: 'o cool glad 2 hear'
+            },
+            {
+              user: 'Kevin Weber',
+              text: 'I\'m working on chat component now, should be p grood'
+            },
+            {
+              user: 'Kevin Weber',
+              text: 'Hopefully I can keep a lot of this code for re-use or at least conceptually take a lot from it so I wasn\'t wasting my time this whole time'
+            },
+            {
+              user: 'Bodie Solomon',
+              text: 'Yeah I hate wasting time/effort too :\\'
+            },
+            {
+              user: 'Bodie Solomon',
+              text: 'Hey isn\'t this the SG Ideation Stream? This isn\'t very productive lol'
+            },
+            {
+              user: 'Kevin Weber',
+              text: 'I know, sigh'
+            },
+            {
+              user: 'Kevin Weber',
+              text: 'we cute tho :3'
+            }
+          ]
+        }
       ]
     },
     dashboard: [],
