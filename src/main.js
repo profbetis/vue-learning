@@ -4,6 +4,8 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
 import dashboard from './components/dashboard'
+import componentGirdle from './components/componentGirdle'
+import backendTest from './components/backendTest'
 import sourceComponent from './components/sourceComponent'
 
 export default new Vue({
@@ -11,6 +13,8 @@ export default new Vue({
 
   components: {
     'dashboard': dashboard,
+    'component-girdle': componentGirdle,
+    'backend-test': backendTest,
     'source-component': sourceComponent
   },
 
@@ -124,7 +128,7 @@ export default new Vue({
             },
             {
               user: 'Kevin Weber',
-              text: 'we cute tho :3'
+              text: 'talk about a frumpin\' grump flumper'
             }
           ]
         }

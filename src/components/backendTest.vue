@@ -2,18 +2,20 @@
 
 <script>
 import Vue from 'vue'
-import $ from 'jquery'
 
 // COMPONENT TEMPLATE
 var comp = Vue.extend({
   props: {
+    backend: String,
     portNumber: Number
   },
 
   data: function () {
     return {
-      usn: '',
-      pwd: ''
+      username: 'n/a',
+      usnEntry: '',
+      pwdEntry: '',
+      session: ''
     }
   },
 
@@ -24,6 +26,8 @@ var comp = Vue.extend({
     this.$dispatch('give-component-info',
       { compName: 'Backend Test',
         compInfo: [
+        ['currentUser', this.username],
+        ['session', this.session],
         ['port', this.portNumber]
         ]
       }
@@ -32,11 +36,18 @@ var comp = Vue.extend({
 
   methods: {
     submitLogin: function () {
+      this.$http.get(this.backend + '/source').then((response) => {
+        console.log(JSON.parse(response.body))
+        }, (err) => {
+        console.log('Failed to GET /source: ' + JSON.stringify(err))
+      })
     },
 
-    sayHi: function () {
-      $.get('api/hello', function (res) {
-        console.log('Response from mock backend: ' + res)
+    createUser: function () {
+      this.$http.get(this.backend + '/source').then((response) => {
+        console.log(JSON.parse(response.body))
+        }, (err) => {
+        console.log('Failed to GET /source: ' + JSON.stringify(err))
       })
     }
   },
@@ -53,8 +64,18 @@ export default comp
 
 <!-- COMPONENT TEMPLATE -->
 <template id="backend-test-template">
-  <div class="backend-test component-meta outline">
-    <button v-on:click="sayHi()">Say Hello</button>
+  <div class="backend-test component-meta">
+
+    <h2>User Access</h2>
+    <div class="outline">
+      <div class="input-group">
+        <input name='usn' placeholder='username' v-model='usnEntry'>
+        <input name='pwd' type='password' placeholder='password' v-model='pwdEntry'>
+      </div>
+      <button v-on:click='loginUser()'>Log-in</button>
+      <button v-on:click='sayHi()'>Create User</button>
+    </div>
+
   </div>
 </template>
 
@@ -62,6 +83,17 @@ export default comp
 <style>
 .backend-test{
   position: relative;
+}
+
+.backend-test .input-group{
+  display: flex;
+}
+.backend-test input{
+  text-align: center;
+  width: 100%;
+}
+.backend-test button{
+  width: 100%;
 }
 
 </style>
