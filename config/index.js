@@ -22,6 +22,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+<<<<<<< Updated upstream
       // proxy all requests starting with /api to jsonplaceholder
       '/api': {
         target: 'localhost:8080',
@@ -29,6 +30,10 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+=======
+      '/v1' : {
+
+>>>>>>> Stashed changes
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

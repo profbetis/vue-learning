@@ -1,15 +1,27 @@
 import Vue from 'vue'
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource)
 
 import dashboard from './components/dashboard'
+import sourceComponent from './components/sourceComponent'
 
 export default new Vue({
   el: '#app',
 
   components: {
-    'dashboard': dashboard
+    'dashboard': dashboard,
+    'source-component': sourceComponent
+  },
+
+  events: {
+    'update-source': function (source) {
+      this.source = source
+    }
   },
 
   data: {
+    source: {},
     user: {
       name: 'Kevin Weber',
       id: '001',

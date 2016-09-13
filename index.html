@@ -54,8 +54,18 @@
           :init-show-info="true">
 
     <div id="app" class="outline">
-      <dashboard :data-sources="user.dataSets"></dashboard>
+
+      <dashboard
+        :data-sources="user.dataSets">
+      </dashboard>
+
+      <source-component
+        backend="/v1"
+        :source="source">
+      </source-component>
+
     </div>
+
 
     <!-- Footer -->
     <div id='footer' style="text-align: center; margin-top: 1em;">

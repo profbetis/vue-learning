@@ -26,7 +26,8 @@ export default Vue.extend({
   data: () => {
     return {
       componentList: [],
-      nextId: 0
+      nextId: 0,
+      source: {}
     }
   },
 
