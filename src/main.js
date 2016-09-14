@@ -33,7 +33,8 @@ export default new Vue({
       teams: [
         'Synapse Garden',
         'Blue Visual',
-        'Bayfront'
+        'Bayfront',
+        'SideTrip'
       ],
       projects: [
         'Vue Learning',
