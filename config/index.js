@@ -22,7 +22,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> b510465aa18a7f144b94ddad1781acd69da998bd
       // proxy all requests starting with /api to jsonplaceholder
       '/api': {
         target: 'localhost:8080',
@@ -30,10 +33,13 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+<<<<<<< HEAD
 =======
       '/v1' : {
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> b510465aa18a7f144b94ddad1781acd69da998bd
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

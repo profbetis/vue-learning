@@ -167,7 +167,6 @@ export default comp
       <h4 v-bind:class="['api-response', loginResponseOK ? 'good' : 'bad']">{{loginResponse}}</h4>
       <h3 v-if='sessionToken'>User: {{username}}, Coin: {{coin}}</h3>
     </div>
-
   </div>
 </template>
 
